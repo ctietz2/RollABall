@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
   public float speed;
   public TextMeshProUGUI countText;
   public GameObject victoryTextObject;
+  public int pickUpTotal;
 
   private void Start()
   {
@@ -37,7 +38,7 @@ public class PlayerController : MonoBehaviour
   private void SetCountText()
   {
     this.countText.text = "Count: " + this.count.ToString();
-    if (this.count < 5)
+    if (this.count < pickUpTotal)
       return;
     this.victoryTextObject.SetActive(true);
     Object.Destroy((Object) GameObject.FindGameObjectWithTag("Enemy"));
