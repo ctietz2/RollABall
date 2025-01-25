@@ -18,6 +18,9 @@ public class PlayerController : MonoBehaviour
   public float speed;
   public TextMeshProUGUI countText;
   public GameObject victoryTextObject;
+  public GameObject restartButton;
+  private AudioSource audioSource;
+  
   public int pickUpTotal;
 
   private void Start()
@@ -26,6 +29,8 @@ public class PlayerController : MonoBehaviour
     this.count = 0;
     this.SetCountText();
     this.victoryTextObject.SetActive(false);
+    this.restartButton.SetActive(false);
+    this.audioSource = this.GetComponent<AudioSource>();
   }
 
   private void OnMove(InputValue movementValue)
@@ -56,6 +61,7 @@ public class PlayerController : MonoBehaviour
     other.gameObject.SetActive(false);
     ++this.count;
     this.SetCountText();
+    audioSource.Play();
   }
 
   private void OnCollisionEnter(Collision collision)
@@ -65,5 +71,6 @@ public class PlayerController : MonoBehaviour
     Object.Destroy((Object) this.gameObject);
     this.victoryTextObject.gameObject.SetActive(true);
     this.victoryTextObject.GetComponent<TextMeshProUGUI>().text = "You Lose!";
+    this.restartButton.gameObject.SetActive(true);
   }
 }
