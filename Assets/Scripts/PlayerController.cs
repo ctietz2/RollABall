@@ -11,7 +11,13 @@ using UnityEngine.InputSystem;
 #nullable disable
 public class PlayerController : MonoBehaviour
 {
-  private Rigidbody rb;
+    private AudioSource dingSound;
+    private AudioSource winSound;
+
+    public AudioClip dingSoundClip;
+    public AudioClip winSoundClip;
+
+    private Rigidbody rb;
   private int count;
   private float movementX;
   private float movementY;
@@ -26,6 +32,12 @@ public class PlayerController : MonoBehaviour
     this.count = 0;
     this.SetCountText();
     this.victoryTextObject.SetActive(false);
+
+        dingSound = gameObject.AddComponent<AudioSource>();
+        winSound = gameObject.AddComponent<AudioSource>();
+
+        dingSound.clip = dingSoundClip;
+        winSound.clip = winSoundClip;
   }
 
   private void OnMove(InputValue movementValue)
@@ -42,6 +54,8 @@ public class PlayerController : MonoBehaviour
       return;
     this.victoryTextObject.SetActive(true);
     Object.Destroy((Object) GameObject.FindGameObjectWithTag("Enemy"));
+
+        winSound.Play();
   }
 
   private void FixedUpdate()
@@ -56,14 +70,18 @@ public class PlayerController : MonoBehaviour
     other.gameObject.SetActive(false);
     ++this.count;
     this.SetCountText();
+
+        dingSound.Play();
   }
 
   private void OnCollisionEnter(Collision collision)
   {
     if (!collision.gameObject.CompareTag("Enemy"))
       return;
-    Object.Destroy((Object) this.gameObject);
-    this.victoryTextObject.gameObject.SetActive(true);
+        Object.Destroy((Object) this.gameObject);
+    this.victoryTextObject.gameObject.SetActive(true);   
     this.victoryTextObject.GetComponent<TextMeshProUGUI>().text = "You Lose!";
+
+        
   }
 }
