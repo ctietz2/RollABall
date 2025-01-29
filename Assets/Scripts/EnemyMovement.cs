@@ -13,12 +13,25 @@ public class EnemyMovement : MonoBehaviour
   public Transform player;
   private NavMeshAgent navMeshAgent;
 
-  private void Start() => this.navMeshAgent = this.GetComponent<NavMeshAgent>();
+    private AudioSource loseSound;
+    public AudioClip loseSoundClip;
+
+    private void Start() 
+    { 
+        this.navMeshAgent = this.GetComponent<NavMeshAgent>();
+        loseSound = gameObject.AddComponent<AudioSource>();
+        loseSound.clip = loseSoundClip;
+    }
 
   private void Update()
   {
     if (!((Object) this.player != (Object) null))
       return;
     this.navMeshAgent.SetDestination(this.player.position);
-  }
+
+        if (!((Object)this.player == (Object)null)) {
+            loseSound.Play();
+        }
+            
+    }
 }

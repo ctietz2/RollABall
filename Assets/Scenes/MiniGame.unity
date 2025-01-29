@@ -742,6 +742,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2072733843}
+  loseSoundClip: {fileID: 8300000, guid: f0f239f06b97642409e46c4fa62d171c, type: 3}
 --- !u!195 &316961693
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -3282,6 +3283,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce252d4f4c73dc746b3e7e0266040c83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dingSoundClip: {fileID: 8300000, guid: 50b8545151a08504ba6972d35a7c0448, type: 3}
+  winSoundClip: {fileID: 8300000, guid: 3e042e50c2586c24b973d062a9666d52, type: 3}
   speed: 8
   countText: {fileID: 875430629}
   victoryTextObject: {fileID: 1157955457}
