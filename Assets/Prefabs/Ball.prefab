@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 2539537072873473212}
   - component: {fileID: 8302247620798873416}
   - component: {fileID: 116126626660277990}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -181,8 +181,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 8
-  countText: {fileID: 0}
-  victoryTextObject: {fileID: 0}
+  countText: {fileID: 6490511056020233471, guid: a7f807cf4d2007149bf95f0e70f0bdf4,
+    type: 3}
+  victoryTextObject: {fileID: 2405226883162834668, guid: 800a41be0af600347ab29e5048224276,
+    type: 3}
   pickUpTotal: 6
 --- !u!114 &8302247620798873416
 MonoBehaviour:

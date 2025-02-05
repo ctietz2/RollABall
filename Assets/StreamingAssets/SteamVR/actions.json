@@ -78,6 +78,10 @@
       "type": "boolean"
     },
     {
+      "name": "/actions/buggy/in/Fire",
+      "type": "boolean"
+    },
+    {
       "name": "/actions/mixedreality/in/ExternalCamera",
       "type": "pose",
       "requirement": "optional"

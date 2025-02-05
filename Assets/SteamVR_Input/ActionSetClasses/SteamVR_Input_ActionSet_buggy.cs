@@ -48,5 +48,13 @@ namespace Valve.VR
                 return SteamVR_Actions.buggy_Reset;
             }
         }
+        
+        public virtual SteamVR_Action_Boolean Fire
+        {
+            get
+            {
+                return SteamVR_Actions.buggy_Fire;
+            }
+        }
     }
 }
