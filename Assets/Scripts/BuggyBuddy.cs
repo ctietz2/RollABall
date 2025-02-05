@@ -53,6 +53,11 @@ namespace Valve.VR.InteractionSystem.Sample
 
         private float shootTimer;
 
+        public float cooldown = 0;
+        public float actualcooldown = 1f;
+        public bool isCooldown = false;
+        public bool triggerReset = false;
+
         [HideInInspector]
         public Vector2 steer;
         [HideInInspector]
@@ -123,9 +128,20 @@ namespace Valve.VR.InteractionSystem.Sample
             //keyboard input for testing
             //Vector3 move = Vector3.forward * Input.GetAxis("Vertical") + Vector3.right * Input.GetAxis("Horizontal");
 
-            if (fire > 0)
+            if (fire > 0 && cooldown <= 0)
             {
                 projectile.fireProjectile();
+                triggerReset = false;
+                isCooldown = true;
+                if (isCooldown == true)
+                {
+                    StartCoroutine(cooldownHappening());
+                }
+            }
+
+            if (fire == 0)
+            {
+                triggerReset = true;
             }
 
 
@@ -229,6 +245,21 @@ namespace Valve.VR.InteractionSystem.Sample
         {
             body.AddForce(localGravity, ForceMode.Acceleration);
         }
+
+        public IEnumerator cooldownHappening()
+        {
+            cooldown = actualcooldown; // Set cooldown once before the loop
+
+            while (cooldown > 0 && triggerReset == false)
+            {
+                cooldown -= Time.deltaTime;
+                yield return null;
+            }
+
+            cooldown = 0;
+            isCooldown = false;
+        }
+
 
         public static float FindAngle(Vector3 fromVector, Vector3 toVector, Vector3 upVector)
         {
